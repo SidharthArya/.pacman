@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Depends = coreutils
+When = PreTransaction
+Exec = /usr/bin/bash -c "/usr/bin/btrfs subvolume snapshot -r / /.snapshots/$(date +\"%Y-%m-%d\") && exit 0"
